@@ -1171,29 +1171,29 @@ var tempDouble;
 var tempI64;
 
 var ASM_CONSTS = {
- 2558240: function() {
+ 2561296: function() {
   Module["emscripten_get_now_backup"] = performance.now;
  },
- 2558295: function($0) {
+ 2561351: function($0) {
   performance.now = function() {
    return $0;
   };
  },
- 2558343: function($0) {
+ 2561399: function($0) {
   performance.now = function() {
    return $0;
   };
  },
- 2558391: function() {
+ 2561447: function() {
   performance.now = Module["emscripten_get_now_backup"];
  },
- 2558446: function() {
+ 2561502: function() {
   return Module.webglContextAttributes.premultipliedAlpha;
  },
- 2558507: function() {
+ 2561563: function() {
   return Module.webglContextAttributes.preserveDrawingBuffer;
  },
- 2558571: function() {
+ 2561627: function() {
   return Module.webglContextAttributes.powerPreference;
  }
 };
@@ -1295,6 +1295,12 @@ function stackTrace() {
  var js = jsStackTrace();
  if (Module["extraStackTrace"]) js += "\n" + Module["extraStackTrace"]();
  return demangleAll(js);
+}
+
+function _CaptureTarget_cmd(index, controller) {
+ let i = UTF8ToString(index);
+ let c = UTF8ToString(controller);
+ window.SCENE_LOADER.ScanSurface(i, c);
 }
 
 var JS_Accelerometer = null;
@@ -2738,12 +2744,6 @@ function _LoadScene(scene, index, targetImg) {
  let i = UTF8ToString(index);
  let t = UTF8ToString(targetImg);
  window.SCENE_LOADER.LoadScene(s, i, t);
-}
-
-function _ScanSurfaceCmd(index, controller) {
- let i = UTF8ToString(index);
- let c = UTF8ToString(controller);
- window.SCENE_LOADER.ScanSurface(i, c);
 }
 
 function ___cxa_allocate_exception() {
@@ -12699,6 +12699,7 @@ function intArrayFromString(stringy, dontAddNull, length) {
 }
 
 var asmLibraryArg = {
+ "CaptureTarget_cmd": _CaptureTarget_cmd,
  "JS_Accelerometer_IsRunning": _JS_Accelerometer_IsRunning,
  "JS_Accelerometer_Start": _JS_Accelerometer_Start,
  "JS_Accelerometer_Stop": _JS_Accelerometer_Stop,
@@ -12763,7 +12764,6 @@ var asmLibraryArg = {
  "JS_SystemInfo_IsMobile": _JS_SystemInfo_IsMobile,
  "JS_UnityEngineShouldQuit": _JS_UnityEngineShouldQuit,
  "LoadScene": _LoadScene,
- "ScanSurfaceCmd": _ScanSurfaceCmd,
  "__cxa_allocate_exception": ___cxa_allocate_exception,
  "__cxa_atexit": ___cxa_atexit,
  "__cxa_begin_catch": ___cxa_begin_catch,
